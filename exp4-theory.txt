@@ -1,0 +1,31 @@
+
+Apache Hive
+
+    What It Is:
+    Apache Hive is a data warehouse infrastructure built on top of Hadoop. It allows users to query and manage large datasets stored in the Hadoop Distributed File System (HDFS) using a language similar to SQL, called HiveQL. Hive provides a high-level abstraction over MapReduce jobs, making it easier for data analysts and business users to interact with big data.
+
+    Who Developed It:
+    Originally developed by Facebook to simplify querying Hadoop data, Hive became open source and is now maintained by the Apache Software Foundation.
+
+    Primary Usage:
+    Hive is primarily used for data summarization, ad-hoc querying, and analysis of large datasets in batch-processing systems. It is not ideal for real-time querying but is very efficient for large-scale data analysis that does not require low-latency operations.
+
+    Functionality:
+    Hive converts HiveQL queries into MapReduce jobs, enabling SQL-like operations on massive datasets. Hive supports features like partitions, buckets, joins, views, and User Defined Functions (UDFs). It provides a simple interface for working with large data in Hadoop by abstracting the complexity of MapReduce programming.
+
+    Additionally, Hive can integrate with other Hadoop ecosystem tools such as HBase and Pig, and it can also be extended using custom UDFs written in Java or other languages.
+
+In this experiment, we upload a CSV file to HDFS and create a Hive table that maps to the CSV schema. Hive is then used to query and analyze the dataset using HiveQL. Students learn how to efficiently interface with HDFS and query data using SQL-like syntax.
+
+    Key Steps:
+
+    Create a new database and table in Hive to map data from the CSV file.
+
+    Load data into the Hive table from HDFS using the LOAD DATA command.
+
+    Perform various operations like SELECT, GROUP BY, and JOIN on the data to analyze it.
+
+    Outcome:
+    By the end of the experiment, students understand how to load data into Hive from HDFS and perform simple SQL operations for data analysis. This reinforces their understanding of data querying within the Hadoop ecosystem.
+
+

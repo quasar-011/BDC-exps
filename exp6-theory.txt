@@ -1,0 +1,38 @@
+Apache Spark
+
+    What It Is:
+    Apache Spark is an open-source, distributed computing system designed for fast, large-scale data processing. Unlike traditional MapReduce jobs in Hadoop, Spark allows for in-memory computation, making it faster than Hadoop for many workloads. Spark also provides APIs in several programming languages, including Java, Scala, Python, and R, for easy interaction with distributed data.
+
+    Who Developed It:
+    Originally developed at UC Berkeley’s AMPLab, Spark is now managed by the Apache Software Foundation. It was created to address the limitations of Hadoop MapReduce by enabling faster in-memory processing and more flexible data analytics.
+
+    Primary Usage:
+    Spark is used for real-time stream processing, interactive querying, and large-scale machine learning. Its flexibility allows it to support a wide variety of analytics, from SQL-style queries to machine learning (MLlib) and graph processing (GraphX). Spark can process data from multiple sources, including HDFS, Cassandra, HBase, and S3.
+
+    Functionality:
+    Spark provides several key components:
+
+        Spark SQL: For querying structured data using SQL or DataFrame operations.
+
+        MLlib: A library for machine learning algorithms.
+
+        GraphX: For graph processing and analysis.
+
+        Spark Streaming: For real-time data stream processing.
+
+        RDDs (Resilient Distributed Datasets): A fundamental abstraction for parallel data processing in Spark.
+
+    Spark's in-memory computing and DAG execution engine allow for significant performance improvements over Hadoop's traditional MapReduce framework. It also supports fault tolerance, where data can be recomputed in case of failure.
+
+This experiment demonstrates how to launch the Spark Shell and use Spark SQL to read data from HDFS. Students will practice using Spark to load a dataset, apply filtering and selection on the data using DataFrames, and perform operations similar to those in Hive, but in a more flexible and interactive environment.
+
+    Key Steps:
+
+    Launch the Spark Shell and initialize a SparkSession.
+
+    Load data into a Spark DataFrame from HDFS using .read.option().csv().
+
+    Query the DataFrame using Spark SQL and DataFrame API.
+
+    Outcome:
+    Students will learn how to work with Apache Spark to process large datasets, particularly through Spark SQL, which provides powerful querying capabilities on distributed data. The focus is on understanding DataFrames, Spark SQL, and performance optimizations provided by Spark.

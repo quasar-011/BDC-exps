@@ -1,0 +1,42 @@
+Apache Pig
+
+    What It Is:
+    Apache Pig is a high-level platform for creating MapReduce programs used with Hadoop. It uses Pig Latin, a simple and easy-to-understand scripting language designed to abstract the complexities of writing low-level Java MapReduce code. Pig simplifies ETL (Extract, Transform, Load) tasks by providing a data flow language for processing and analyzing large datasets.
+
+    Who Developed It:
+    Pig was originally developed by Yahoo! to make processing large datasets in Hadoop more accessible, particularly for those without deep Java programming skills. It is now an open-source project under the Apache Software Foundation.
+
+    Primary Usage:
+    Pig is mainly used for ETL operations, data transformation, and data summarization tasks on large datasets. It is especially useful when batch processing or data cleansing is required, as it provides an easy-to-use scripting interface for complex data operations.
+
+    Functionality:
+    Pig abstracts the complexities of writing low-level MapReduce code and provides a higher-level language, Pig Latin, to perform operations like:
+
+        LOAD: Load data into the system.
+
+        FILTER: Filter data based on conditions.
+
+        JOIN: Join multiple datasets.
+
+        GROUP: Group data by specified criteria.
+
+        ORDER: Sort data.
+
+        FOREACH: Apply operations to each row of data.
+
+        DUMP: Display the results.
+
+    Pig scripts are automatically translated into MapReduce jobs by the system, and it supports custom User Defined Functions (UDFs) for flexibility.
+
+In this experiment, students will load a CSV file into Pig, and then use Pig Latin to perform a series of data transformation operations like sorting, grouping, joining, and filtering. The goal is to show how Pig simplifies complex data transformations compared to writing MapReduce code directly.
+
+    Key Steps:
+
+    Load data from a CSV file into Pig using PigStorage.
+
+    Write scripts to sort, group, and join the data.
+
+    Use FILTER and FOREACH to transform and display the data.
+
+    Outcome:
+    Students will be introduced to Pig Latin, a simple and powerful scripting language for processing large-scale data. This experiment shows how Pig enables complex transformations with simple syntax, providing a high-level abstraction over Hadoop's lower-level MapReduce operations.
