@@ -1,0 +1,70 @@
+start-dfs.sh
+start-yarn.sh
+hive
+
+CREATE DATABASE IF NOT EXISTS company_join_demo;
+
+USE company_join_demo;
+
+CREATE TABLE IF NOT EXISTS employee_data (
+    emp_id INT,
+    emp_name STRING,
+    dept_id INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/user/quasar_011/employee_data/';
+
+CREATE TABLE IF NOT EXISTS department_data (
+    dept_id INT,
+    dept_name STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/user/quasar_011/department_data/';
+
+cat <<EOF > employee_data.csv
+101,Bhavesh,1
+102,Kisan,2
+103,Faizan,3
+104,Kartik,4
+EOF
+
+cat <<EOF > department_data.csv
+1,HR
+2,Finance
+3,IT
+EOF
+
+hdfs dfs -mkdir -p /user/quasar_011/employee_data
+
+hdfs dfs -mkdir -p /user/quasar_011/department_data
+
+hdfs dfs -put employee_data.csv /user/quasar_011/employee_data/
+
+hdfs dfs -put department_data.csv /user/quasar_011/department_data/
+
+
+SELECT * FROM employee_data;
+
+SELECT * FROM department_data;
+
+SELECT e.emp_id, e.emp_name, d.dept_name
+FROM employee_data e
+JOIN department_data d
+ON e.dept_id = d.dept_id;
+
+SELECT e.emp_id, e.emp_name, d.dept_name
+FROM employee_data e
+LEFT OUTER JOIN department_data d
+ON e.dept_id = d.dept_id;
+
+SELECT e.emp_id, e.emp_name, d.dept_name
+FROM employee_data e
+RIGHT OUTER JOIN department_data d
+ON e.dept_id = d.dept_id;
+
+SELECT e.emp_id, e.emp_name, d.dept_name
+FROM employee_data e
+FULL OUTER JOIN department_data d
+ON e.dept_id = d.dept_id;

@@ -1,0 +1,70 @@
+start-dfs.sh
+
+start-yarn.sh
+
+hive --service metastore &
+
+hive --service hiveserver2 &
+
+jps
+
+
+hdfs dfs -mkdir -p /user/quasar_011/hive_data
+
+
+cat <<EOF > employees.csv
+id,name,age,department,salary
+101,Bhavesh,25,IT,50000
+102,Amit,28,HR,60000
+103,Faizan,30,Finance,70000
+104,Neha,27,Finance,75000
+105,Krishna,35,HR,62000
+106,Anjali,24,IT,51000
+EOF
+
+hdfs dfs -put employees.csv /user/quasar_011/hive_data/
+
+hdfs dfs -ls /user/quasar_011/hive_data/
+
+
+
+hive
+
+CREATE DATABASE IF NOT EXISTS company_db;
+
+USE company_db;
+
+CREATE TABLE employees (
+    id INT,
+    name STRING,
+    age INT,
+    department STRING,
+    salary INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+
+LOAD DATA INPATH '/user/quasar_011/hive_data/employees.csv' INTO TABLE employees;
+
+SELECT * FROM employees;
+
+CREATE EXTERNAL TABLE employees_ext (
+    id INT,
+    name STRING,
+    age INT,
+    department STRING,
+    salary INT
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+LOCATION '/user/quasar_011/hive_data/';
+
+SELECT name, department FROM employees_ext;
+
+SELECT department, MAX(salary) FROM employees GROUP BY department;
+
+SELECT department, COUNT(*) FROM employees GROUP BY department;
+
+SELECT * FROM employees WHERE salary > 60000;

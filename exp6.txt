@@ -1,0 +1,25 @@
+start-dfs.sh
+
+start-yarn.sh
+
+start-master.sh
+
+start-worker.sh spark://fedora:7077
+
+cat <<EOF > employee_spark.csv
+emp_id,emp_name,emp_age,emp_salary
+201,Bhargav,25,50000
+202,Pranav,28,60000
+203,Zaid,30,70000
+204,Yash,26,55000
+EOF
+
+hdfs dfs -mkdir -p /user/quasar_011/employee_spark
+
+hdfs dfs -put employee_spark.csv /user/quasar_011/employee_spark/
+
+val spark = org.apache.spark.sql.SparkSession.builder().appName("Spark SQL DEMO").getOrCreate()
+
+val df = spark.read.option("header","true").option("inferSchema", "true").csv("hdfs:///user/quasar_011/employee_spark/employee_spark.csv")
+
+df.show()

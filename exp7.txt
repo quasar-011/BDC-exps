@@ -1,0 +1,51 @@
+start-dfs.sh
+
+start-yarn.sh
+
+echo -e "id,name,age,salary\n101,Bhavesh,25,50000\n102,Amit,28,60000\n103,Faizan,30,70000\n104,Kartik,26,55000" > employees_quasar.csv
+
+hadoop fs -mkdir -p /user/quasar_011/employees
+
+hadoop fs -put -f employees_quasar.csv /user/quasar_011/employees/
+
+echo -e "101,Engineering\n102,HR\n103,Marketing\n104,Finance" > departments_quasar.csv
+
+hadoop fs -mkdir -p /user/quasar_011/departments
+
+hadoop fs -put -f departments_quasar.csv /user/quasar_011/departments/
+
+pig
+
+EMPLOYEES = LOAD '/user/quasar_011/employees/employees_quasar.csv' 
+  USING PigStorage(',') 
+  AS (id:int, name:chararray, age:int, salary:int);
+
+
+SORTED_EMPLOYEES = ORDER EMPLOYEES BY salary DESC;
+
+DUMP SORTED_EMPLOYEES;
+
+
+GROUPED_BY_AGE = GROUP EMPLOYEES BY age;
+
+DUMP GROUPED_BY_AGE;
+
+
+DEPARTMENTS = LOAD '/user/quasar_011/departments/departments_quasar.csv' 
+  USING PigStorage(',') 
+  AS (dept_id:int, dept_name:chararray);
+
+
+JOINED_DATA = JOIN EMPLOYEES BY id, DEPARTMENTS BY dept_id;
+
+DUMP JOINED_DATA;
+
+
+PROJECTED_DATA = FOREACH EMPLOYEES GENERATE name, salary;
+
+DUMP PROJECTED_DATA;
+
+
+FILTERED_EMPLOYEES = FILTER EMPLOYEES BY salary > 55000;
+
+DUMP FILTERED_EMPLOYEES;
